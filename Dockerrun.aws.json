@@ -1,0 +1,36 @@
+{
+"AWSEBDockerrunVersion":2,
+"containerDefinitions":[
+	{
+	"name":"client",
+	"image":"sashakil/final-client",
+	"hostname":"client",
+	"essential": false
+	},
+	{
+	"name":"server",
+	"image":"sashakil/final-server",
+	"hostname":"api",
+	"essential":false
+	},
+	{
+	"name":"worker",
+	"image": "sashakil/final-worker",
+	"hostname":"worker",
+	"essential":false
+	},
+	{
+	"name":"nginx",
+	"image": "sashakil/final-nginx",
+	"hostname":"nginx",
+	"essential":true,
+	"portMappings":[
+		{
+			"hostPort": 80,
+			"containerPort":80
+		}
+	],
+	"links":["client", "server"]
+	}
+]
+}
